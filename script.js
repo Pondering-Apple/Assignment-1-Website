@@ -1,15 +1,12 @@
 let x = 0;
-let y = 108;
+let y = 111;
 
 while (x <= y) {
-	x = x;
-	y = 96;
+	x = x + 1;
 
 	let gridBackground = document.getElementById("grid");
-	let gridBehaviour = '<div class="grid-item"></div>'.repeat(x + 1);
-
-	gridBackground.innerHTML = gridBehaviour;
-
-	// gridItem = document.getElementsByClassName("grid-item");
-	// gridItem.addID(`gridIdentifier${x}`);
+	let gridItem = document.createElement("div");
+	gridItem.className = `grid-item`;
+	gridItem.id = `gridIdentifier${x}`;
+	gridBackground.appendChild(gridItem);
 }

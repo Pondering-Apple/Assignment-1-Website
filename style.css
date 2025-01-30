@@ -86,14 +86,24 @@ video {
 	font: inherit;
 	vertical-align: baseline;
 }
-
+main {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 .background {
 	background-color: #2d3133;
 	width: 100vw;
 	height: 100vh;
 	display: grid;
-	grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+	grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
 	grid-template-rows: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
 }
 .grid-item {
 	background-color: #2d3133;
@@ -102,4 +112,11 @@ video {
 	padding: 20px;
 	font-size: 30px;
 	text-align: center;
+}
+
+.card-container {
+	height: 650px;
+	width: 450px;
+	z-index: 10;
+	background-color: red;
 }
