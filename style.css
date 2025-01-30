@@ -98,12 +98,13 @@ main {
 	width: 100vw;
 	height: 100vh;
 	display: grid;
-	grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+	grid-template-columns: repeat(14, 1fr);
 	grid-template-rows: auto;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: -1;
+	pointer-events: none;
 }
 .grid-item {
 	background-color: #2d3133;
@@ -112,6 +113,14 @@ main {
 	padding: 20px;
 	font-size: 30px;
 	text-align: center;
+	pointer-events: auto;
+	z-index: 100;
+	position: relative;
+}
+.grid-item:hover {
+	background-color: #009dff;
+	box-shadow: inset 0px 4px 10px rgb(0, 0, 0);
+	cursor: pointer;
 }
 
 .card-container {
@@ -137,7 +146,7 @@ main {
 	z-index: 1;
 }
 .card-background-top {
-	background-color: rgba(10, 170, 245, 0.2);
+	/* background-color: rgba(10, 170, 245, 0.2); */
 	box-shadow: inset 0px 2px 5px #3b81a1;
 	z-index: 100;
 }
