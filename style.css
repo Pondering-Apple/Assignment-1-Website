@@ -118,5 +118,7 @@ main {
 	height: 650px;
 	width: 450px;
 	z-index: 10;
-	background-color: red;
+	background-color: #3f6475;
+	border-radius: 20px;
+	box-shadow: 0px 8px 10px #3b81a1;
 }
