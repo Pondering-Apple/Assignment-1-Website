@@ -33,6 +33,7 @@ samp,
 small,
 strike,
 strong,
+svg,
 sub,
 sup,
 tt,
@@ -93,13 +94,24 @@ main {
 	align-items: center;
 	height: 100vh;
 }
+
+.svg {
+	position: relative;
+	margin: 0; /* Remove any default margin */
+	padding: 0; /* Remove any default padding */
+	width: 80px; /* Adjust the width as needed */
+	height: auto; /* Maintain aspect ratio */
+	z-index: 1;
+}
+
 .background {
 	background-color: #2d3133;
 	width: 100vw;
 	height: 100vh;
 	display: grid;
-	grid-template-columns: repeat(14, 1fr);
-	grid-template-rows: auto;
+	grid-template-columns: repeat(13, 1fr); /* Adjust the number of columns */
+	grid-template-rows: auto; /* Adjust the number of rows */
+	align-items: start;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -107,7 +119,6 @@ main {
 	pointer-events: none;
 }
 .grid-item {
-	background-color: #2d3133;
 	color: white;
 	border: 1px dashed white;
 	padding: 20px;
@@ -115,38 +126,18 @@ main {
 	text-align: center;
 	pointer-events: auto;
 	z-index: 100;
-	position: relative;
-}
-.grid-item:hover {
-	background-color: #009dff;
-	box-shadow: inset 0px 4px 10px rgb(0, 0, 0);
-	cursor: pointer;
+	z-index: -1;
 }
 
 .card-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 650px;
-	width: 450px;
+	height: 500px;
+	width: 350px;
 	z-index: 10;
-	background-color: #0aaaf5;
+	background-color: #ffffff;
+	border: 20px solid blue;
 	border-radius: 20px;
 	box-shadow: 0px 8px 10px #3b81a1;
-}
-.card-background-top,
-.card-background-bottom {
-	height: 625px;
-	width: 425px;
-	border-radius: 10px;
-}
-.card-background-bottom {
-	background-color: white;
-	position: absolute;
-	z-index: 1;
-}
-.card-background-top {
-	/* background-color: rgba(10, 170, 245, 0.2); */
-	box-shadow: inset 0px 2px 5px #3b81a1;
-	z-index: 100;
 }
