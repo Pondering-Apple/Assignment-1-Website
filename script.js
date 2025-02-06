@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	let { gridIDs, count } = initializeGridDown();
 });
 
+$(document).ready(function () {
+	$(".svg").animate({ left: window.innerWidth - 20 }, 2500);
+});
+
 window.addEventListener("resize", function () {
 	console.log("Window Resized");
 	console.log(
@@ -11,7 +15,7 @@ window.addEventListener("resize", function () {
 
 function initializeGridDown() {
 	let x = 0;
-	let y = 90;
+	let y = 180;
 	let gridIDs = [];
 
 	while (x <= y) {
@@ -19,8 +23,8 @@ function initializeGridDown() {
 		let gridItem = document.createElement("div");
 		gridItem.className = `grid-item`;
 		gridItem.id = `${x}`;
-		gridItem.style.width = "80px";
-		gridItem.style.height = "80px";
+		gridItem.style.width = "60px";
+		gridItem.style.height = "60px";
 		gridBackground.appendChild(gridItem);
 
 		x = x + 1;
