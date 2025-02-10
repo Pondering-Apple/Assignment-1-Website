@@ -87,7 +87,7 @@ video {
 	font: inherit;
 	vertical-align: baseline;
 }
-main {
+/* main {
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -137,4 +137,4 @@ main {
 	border: 20px solid blue;
 	border-radius: 20px;
 	box-shadow: 0px 8px 10px #3b81a1;
-}
+} */
