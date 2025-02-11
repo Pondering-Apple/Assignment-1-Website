@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-family: "ibm-plex-mono", sans-serif;
+	font-family: "IBM Plex Mono", serif;
 	font-weight: 400;
 	font-style: normal;
 	vertical-align: baseline;
@@ -70,16 +70,18 @@ body {
 }
 
 .logo-link > * {
-	width: 72px;
+	width: 90px;
 	height: auto;
 }
 
 .github-path {
 	fill: #2b3137;
 	transition: 0.5s;
+	filter: drop-shadow(0 0.5px 1px #2b3137b3);
 }
 .github-path:hover {
-	fill: #24292e;
+	fill: #1a1e21;
+	filter: drop-shadow(0 0.5px 1px #7c72ffb3);
 }
 
 .cls-1 {
@@ -88,12 +90,13 @@ body {
 	stroke-miterlimit: 10;
 	stroke-width: 8px;
 	transition: 0.5s;
+	filter: drop-shadow(0 2px 2px #016ba3b3);
 }
 
 .cls-1:hover {
 	fill: #016ba3;
 	stroke: #016ba3;
-	filter: drop-shadow(0 5px 5px #016ba3);
+	filter: drop-shadow(0 4px 3px #016ba3);
 }
 
 .linkedin-paths {

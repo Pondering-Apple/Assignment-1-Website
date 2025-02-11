@@ -1,127 +1,107 @@
-// document.addEventListener("DOMContentLoaded", function () {
-// 	let { gridIDs, count } = initializeGridDown();
-// });
+document.addEventListener("DOMContentLoaded", function () {
+	// Loop for creating amount of triangles
+	for (let i = 0; i < 8; i++) {
+		triangles.push(createTriangle(colors[i]));
+		updatePosition(triangles[i]);
+		setInterval(() => move(triangles[i]), 600); // Move each triangle every 600ms
+	}
+});
 
-// $(document).ready(function () {
-// 	$(".svg").animate({ left: window.innerWidth - 20 }, 2500);
-// });
+const gridSize = 40;
+const triangleMiddle = 10;
+const colors = [
+	"white", // White
+	"#DF5C53", // Red
+	"#5D80DF", // Blue
+	"#8ADF75", // Green
+	"#E9DA78", // Yellow
+	"#E09259", // Orange
+	"#A767DF", // Purple
+	"#63D8DF", // Cyan
+];
+const triangles = [];
 
-// window.addEventListener("resize", function () {
-// 	console.log("Window Resized");
-// 	console.log(
-// 		`Width: ${this.window.innerWidth}, Height: ${this.window.innerHeight}`
-// 	);
-// });
+function createTriangle(color) {
+	const triangle = document.createElement("div");
+	triangle.className = "triangle";
+	triangle.style.borderBottomColor = color;
+	document.body.appendChild(triangle);
+	return {
+		element: triangle,
+		x:
+			Math.floor(Math.random() * (window.innerWidth / gridSize)) *
+			(gridSize - triangleMiddle), // Random x position
+		y:
+			Math.floor(Math.random() * (window.innerHeight / gridSize)) *
+			(gridSize - triangleMiddle), // Random y position
+		direction: Math.floor(Math.random() * 4), // Random initial direction
+		color: color,
+	};
+}
 
-// function initializeGridDown() {
-// 	let x = 0;
-// 	let y = 180;
-// 	let gridIDs = [];
+function createTrail(px, py, color) {
+	const trail = document.createElement("div");
+	trail.className = "trail";
+	trail.style.backgroundColor = color;
+	trail.style.left = `${px + 2}px`;
+	trail.style.top = `${py + 2}px`;
+	document.body.appendChild(trail);
+	setTimeout(() => (trail.style.opacity = "0"), 100); // Fade out trail
+	setTimeout(() => trail.remove(), 1000); // Remove trail after 1 second
+}
 
-// 	while (x <= y) {
-// 		let gridBackground = document.getElementById("grid");
-// 		let gridItem = document.createElement("div");
-// 		gridItem.className = `grid-item`;
-// 		gridItem.id = `${x}`;
-// 		gridItem.style.width = "60px";
-// 		gridItem.style.height = "60px";
-// 		gridBackground.appendChild(gridItem);
+function updatePosition(triangleObj) {
+	triangleObj.element.style.left = `${triangleObj.x}px`;
+	triangleObj.element.style.top = `${triangleObj.y}px`;
+	triangleObj.element.style.transform = `rotate(${
+		triangleObj.direction * 90
+	}deg)`; // Rotate triangle based on direction
+}
 
-// 		x = x + 1;
+function move(triangleObj) {
+	createTrail(
+		triangleObj.x + triangleMiddle / 2,
+		triangleObj.y + triangleMiddle / 2,
+		triangleObj.color
+	); // Create trail at current position
+	const choices = [-1, 0, 1]; // Left, Forward, and Right
+	triangleObj.direction =
+		(triangleObj.direction + choices[Math.floor(Math.random() * 3)] + 4) % 4; // Randomly change direction
 
-// 		// $("#1").animate({ left: "500px" });
+	// Move triangle based on direction
+	if (triangleObj.direction === 0) triangleObj.y -= gridSize - triangleMiddle;
+	else if (triangleObj.direction === 1)
+		triangleObj.x += gridSize - triangleMiddle;
+	else if (triangleObj.direction === 2)
+		triangleObj.y += gridSize - triangleMiddle;
+	else if (triangleObj.direction === 3)
+		triangleObj.x -= gridSize - triangleMiddle;
 
-// 		gridIDs.push(gridItem.id);
-// 	}
+	// Ensure triangle stays within bounds
+	triangleObj.x =
+		Math.round(triangleObj.x / gridSize) * gridSize - triangleMiddle;
+	triangleObj.y =
+		Math.round(triangleObj.y / gridSize) * gridSize - triangleMiddle;
 
-// 	return { gridIDs, count: x };
-// }
-
-// console.log(`Width: ${window.innerWidth}, Height: ${window.innerHeight}`);
-
-// document.addEventListener("DOMContentLoaded", function () {
-// 	const triangle = createTriangle(colors[0]);
-// 	move(triangle);
-// });
-// const gridSize = 40;
-// const colors = [
-// 	"white", //White
-// 	"#DF5C53", //Red
-// 	"#5D80DF", //Blue
-// 	"#8ADF75", //Green
-// 	"#E9DA78", //Yellow
-// 	"#E09259", //Orange
-// 	"#A767DF", //Purple
-// 	"#63D8DF", //Cyan
-// ];
-// const triangles = [];
-
-// function createTriangle(color) {
-// 	const triangle = document.createElement("div");
-// 	triangle.className = "triangle";
-// 	triangle.style.borderBottomColor = color;
-// 	document.body.appendChild(triangle);
-// 	return {
-// 		element: triangle,
-// 		x: Math.floor(Math.random() * (window.innerWidth / gridSize)) * gridSize,
-// 		y: Math.floor(Math.random() * (window.innerHeight / gridSize)) * gridSize,
-// 		direction: Math.floor(Math.random() * 4),
-// 		color: color,
-// 	};
-// }
-
-// function createTrail(px, py, color) {
-// 	const trail = document.createElement("div");
-// 	trail.className = "trail";
-// 	trail.style.backgroundColor = color;
-// 	trail.style.left = `${px + 2}px`;
-// 	trail.style.top = `${py + 2}px`;
-// 	document.body.appendChild(trail);
-// 	setTimeout(() => (trail.style.opacity = "0"), 100);
-// 	setTimeout(() => trail.remove(), 1000);
-// }
-
-// function updatePosition(triangleObj) {
-// 	triangleObj.element.style.left = `${triangleObj.x}px`;
-// 	triangleObj.element.style.top = `${triangleObj.y}px`;
-// 	triangleObj.element.style.tranform = `rotate(${
-// 		triangleObj.direction * 90
-// 	}deg)`;
-// }
-
-// function move(triangleObj) {
-// 	createTrail(triangleObj.x, triangleObj.y, triangleObj.color);
-// 	const choices = [-1, 0, 1]; //Left, Forward and Right
-// 	triangleObj.direction =
-// 		(triangleObj.direction + choices[Math.floor(Math.random() * 3)] + 4) % 4;
-
-// 	if (triangleObj.direction === 0) triangleObj.y -= gridSize;
-// 	else if (triangleObj.direction === 1) triangleObj.x += gridSize;
-// 	else if (triangleObj.direction === 2) triangleObj.y += gridSize;
-// 	else if (triangleObj.direction === 3) triangleObj.x -= gridSize;
-
-// 	triangleObj.x = Math.round(triangleObj.x / gridSize) * gridSize;
-// 	triangleObj.y = Math.round(triangleObj.y / gridSize) * gridSize;
-
-// 	if (triangleObj.x < 0 || triangleObj.x >= window.innerWidth - gridSize) {
-// 		triangleObj.direction = (triangleObj.direction + 2) % 4;
-// 		triangleObj.x = Math.max(
-// 			0,
-// 			Math.min(triangleObj.x, window.innerWidth - gridSize)
-// 		);
-// 	}
-// 	if (triangleObj.y < 0 || triangleObj.y >= window.innerHeight - gridSize) {
-// 		triangleObj.direction = (triangleObj.direction + 2) % 4;
-// 		triangleObj.y = Math.max(
-// 			0,
-// 			Math.min(triangleObj.y, window.innerHeight - gridSize)
-// 		);
-// 	}
-// 	updatePosition(triangleObj);
-
-// 	for (let i = 0; i < 8; i++) {
-// 		triangles.push(createTriangle(colors[i]));
-// 		updatePosition(triangles[i]);
-// 		setInterval(() => move(triangles[i]), 600);
-// 	}
-// }
+	if (
+		triangleObj.x < 0 ||
+		triangleObj.x >= window.innerWidth - (gridSize - triangleMiddle)
+	) {
+		triangleObj.direction = (triangleObj.direction + 2) % 4; // Reverse direction if out of bounds
+		triangleObj.x = Math.max(
+			0,
+			Math.min(triangleObj.x, window.innerWidth - gridSize)
+		);
+	}
+	if (
+		triangleObj.y < 0 ||
+		triangleObj.y >= window.innerHeight - (gridSize - triangleMiddle)
+	) {
+		triangleObj.direction = (triangleObj.direction + 2) % 4; // Reverse direction if out of bounds
+		triangleObj.y = Math.max(
+			0,
+			Math.min(triangleObj.y, window.innerHeight - gridSize)
+		);
+	}
+	updatePosition(triangleObj); // Update triangle position on screen
+}
