@@ -3,161 +3,34 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Moving Triangle Grid</title>
-		<style>
-			body {
-				margin: 0;
-				overflow: hidden;
-				background-color: #222;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: 100vh;
-				position: relative;
-			}
-			.grid {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				background-size: 40px 40px;
-				background-image: linear-gradient(
-						rgba(255, 255, 255, 0.05) 1px,
-						transparent 1px
-					),
-					linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-			}
-			.triangle {
-				position: absolute;
-				width: 0;
-				height: 0;
-				border-left: 10px solid transparent;
-				border-right: 10px solid transparent;
-				border-bottom: 20px solid;
-				transition: transform 0.6s linear, left 0.6s linear, top 0.6s linear;
-				transform-origin: center;
-			}
-			.trail {
-				position: absolute;
-				width: 6px;
-				height: 6px;
-				border-radius: 50%;
-				opacity: 1;
-				transition: opacity 1s linear;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="grid"></div>
-		<script>
-			const gridSize = 40;
-			const colors = [
-				"white", //White
-				"#DF5C53", //Red
-				"#5D80DF", //Blue
-				"#8ADF75", //Green
-				"#E9DA78", //Yellow
-				"#E09259", //Orange
-				"#A767DF", //Purple
-				"#63D8DF", //Cyan
-			];
-			const triangles = [];
-
-			function createTriangle(color) {
-				const triangle = document.createElement("div");
-				triangle.className = "triangle";
-				triangle.style.borderBottomColor = color;
-				document.body.appendChild(triangle);
-				return {
-					element: triangle,
-					x:
-						Math.floor(Math.random() * (window.innerWidth / gridSize)) *
-						gridSize,
-					y:
-						Math.floor(Math.random() * (window.innerHeight / gridSize)) *
-						gridSize,
-					direction: Math.floor(Math.random() * 4),
-					color: color,
-				};
-			}
-
-			function createTrail(px, py, color) {
-				const trail = document.createElement("div");
-				trail.className = "trail";
-				trail.style.backgroundColor = color;
-				trail.style.left = `${px + 2}px`;
-				trail.style.top = `${py + 2}px`;
-				document.body.appendChild(trail);
-				setTimeout(() => (trail.style.opacity = "0"), 100);
-				setTimeout(() => trail.remove(), 1000);
-			}
-
-			function updatePosition(triangleObj) {
-				triangleObj.element.style.left = `${triangleObj.x}px`;
-				triangleObj.element.style.top = `${triangleObj.y}px`;
-				triangleObj.element.style.transform = `rotate(${
-					triangleObj.direction * 90
-				}deg)`;
-			}
-
-			function move(triangleObj) {
-				createTrail(triangleObj.x, triangleObj.y, triangleObj.color);
-				const choices = [-1, 0, 1]; // Left, forward, right
-				triangleObj.direction =
-					(triangleObj.direction + choices[Math.floor(Math.random() * 3)] + 4) %
-					4;
-
-				if (triangleObj.direction === 0) triangleObj.y -= gridSize;
-				else if (triangleObj.direction === 1) triangleObj.x += gridSize;
-				else if (triangleObj.direction === 2) triangleObj.y += gridSize;
-				else if (triangleObj.direction === 3) triangleObj.x -= gridSize;
-
-				// Ensure proper grid alignment
-				triangleObj.x = Math.round(triangleObj.x / gridSize) * gridSize;
-				triangleObj.y = Math.round(triangleObj.y / gridSize) * gridSize;
-
-				// Turn around at edges instead of wrapping
-				if (
-					triangleObj.x < 0 ||
-					triangleObj.x >= window.innerWidth - gridSize
-				) {
-					triangleObj.direction = (triangleObj.direction + 2) % 4;
-					triangleObj.x = Math.max(
-						0,
-						Math.min(triangleObj.x, window.innerWidth - gridSize)
-					);
-				}
-				if (
-					triangleObj.y < 0 ||
-					triangleObj.y >= window.innerHeight - gridSize
-				) {
-					triangleObj.direction = (triangleObj.direction + 2) % 4;
-					triangleObj.y = Math.max(
-						0,
-						Math.min(triangleObj.y, window.innerHeight - gridSize)
-					);
-				}
-
-				updatePosition(triangleObj);
-			}
-
-			for (let i = 0; i < 8; i++) {
-				triangles.push(createTriangle(colors[i]));
-				updatePosition(triangles[i]);
-				setInterval(() => move(triangles[i]), 600);
-			}
-		</script>
-	</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
 		<title>JwK Business Card</title>
 	</head>
 	<body>
+		<div class="card">
+			<!--<img 
+				class="josh-logo"
+				src=""
+				alt="Personal logo using J w K"/> -->
+			<a
+				class="logo-link"
+				href="https://github.com/pondering-Apple"
+				target="_blank"
+				><img
+					class="github"
+					src="cssAssets/github-mark/github-mark.png"
+					alt="Github Logo and link to account"
+			/></a>
+			<a
+				class="logo-link"
+				href="https://www.linkedin.com/in/joshuakarbowiak/"
+				target="_blank"
+				><img
+					class="linkedin"
+					src="cssAssets/LinkedIn-Logos/LI-In-Bug.png"
+					alt="Linkedin Logo and link to profile"
+			/></a>
+		</div>
 		<div class="grid"></div>
 		<script src="script.js"></script>
 	</body>

@@ -15,6 +15,7 @@ body {
 	justify-content: center;
 	height: 100vh;
 	position: relative;
+	z-index: -1;
 }
 
 .grid {
@@ -27,6 +28,7 @@ body {
 			transparent 1px
 		),
 		linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent);
+	pointer-events: auto;
 }
 .triangle {
 	position: absolute;
@@ -45,4 +47,33 @@ body {
 	border-radius: 50%;
 	opacity: 1;
 	transition: opacity 1s linear;
+}
+
+.card {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 500px;
+	width: 300px;
+	background-color: rgb(255, 255, 255);
+	z-index: 100;
+}
+
+.logo-link {
+	padding: 10px;
+}
+
+.logo-link > * {
+	width: 72px;
+	height: auto;
+}
+.linkedin {
+	margin-top: 7px;
+}
+
+.container {
+	background-color: red;
+}
+.blank {
+	background-color: green;
 }
