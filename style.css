@@ -2,8 +2,9 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+	font-family: "ibm-plex-mono", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 	vertical-align: baseline;
 }
 
@@ -17,7 +18,7 @@ body {
 	position: relative;
 	z-index: -1;
 }
-
+/* Grid background Layout */
 .grid {
 	position: absolute;
 	width: 100%;
@@ -30,6 +31,7 @@ body {
 		linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent);
 	pointer-events: auto;
 }
+/* Triangle icons that move in background */
 .triangle {
 	position: absolute;
 	width: 0;
@@ -50,13 +52,17 @@ body {
 }
 
 .card {
+	border: 5px solid black;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	height: 500px;
-	width: 300px;
+	justify-content: space-around;
+	flex-direction: column;
+	height: 575px;
+	width: 350px;
 	background-color: rgb(255, 255, 255);
 	z-index: 100;
+	box-shadow: 0 5px 10px;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .logo-link {
@@ -67,13 +73,29 @@ body {
 	width: 72px;
 	height: auto;
 }
-.linkedin {
-	margin-top: 7px;
+
+.github-path {
+	fill: #2b3137;
+	transition: 0.5s;
+}
+.github-path:hover {
+	fill: #24292e;
 }
 
-.container {
-	background-color: red;
+.cls-1 {
+	fill: #0077b5;
+	stroke: #0077b5;
+	stroke-miterlimit: 10;
+	stroke-width: 8px;
+	transition: 0.5s;
 }
-.blank {
-	background-color: green;
+
+.cls-1:hover {
+	fill: #016ba3;
+	stroke: #016ba3;
+	filter: drop-shadow(0 5px 5px #016ba3);
+}
+
+.linkedin-paths {
+	fill: rgb(255, 255, 255);
 }
