@@ -25,10 +25,11 @@ body {
 	height: 100%;
 	background-size: 40px 40px;
 	background-image: linear-gradient(
+			to right,
 			rgba(255, 255, 255, 0.05) 1px,
 			transparent 1px
 		),
-		linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent);
+		linear-gradient(to top, rgba(255, 255, 255, 0.05) 1px, transparent);
 	pointer-events: auto;
 }
 /* Triangle icons that move in background */
@@ -39,6 +40,7 @@ body {
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
 	border-bottom: 20px solid;
+	/* This is the width of the triangle */
 	transition: transform 0.6s linear, left 0.6s linear, top 0.6s linear;
 	transform-origin: center;
 }
@@ -101,4 +103,10 @@ body {
 
 .linkedin-paths {
 	fill: rgb(255, 255, 255);
+}
+
+.josh-logo {
+	margin-left: 30%;
+	margin-right: 30%;
+	height: auto;
 }

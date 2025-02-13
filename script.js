@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		triangles.push(createTriangle(colors[i]));
 		updatePosition(triangles[i]);
 		setInterval(() => move(triangles[i]), 600); // Move each triangle every 600ms
+		console.log("goodbye");
 	}
 });
 
