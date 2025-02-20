@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 	// Loop for creating amount of triangles
 	let amount = colors.length;
-	console.log(amount);
+	console.log(`${amount} Triangles floating in space`);
 	for (let i = 0; i < amount; i++) {
 		triangles.push(createTriangle(colors[i]));
 		updatePosition(triangles[i]);
