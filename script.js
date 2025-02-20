@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 	// Loop for creating amount of triangles
-	for (let i = 0; i < 8; i++) {
+	let amount = colors.length;
+	console.log(amount);
+	for (let i = 0; i < amount; i++) {
 		triangles.push(createTriangle(colors[i]));
 		updatePosition(triangles[i]);
 		setInterval(() => move(triangles[i]), 600); // Move each triangle every 600ms
@@ -18,6 +20,9 @@ const colors = [
 	"#E09259", // Orange
 	"#A767DF", // Purple
 	"#63D8DF", // Cyan
+	"#B5DF4E", // Lime
+	"#DF709E", // Pink
+	"#A05A2C", // Brown
 ];
 const triangles = [];
 
@@ -84,8 +89,8 @@ function move(triangleObj) {
 		Math.round(triangleObj.y / gridSize) * gridSize - triangleMiddle;
 
 	if (
-		triangleObj.x < 0 ||
-		triangleObj.x >= window.innerWidth - (gridSize - triangleMiddle)
+		triangleObj.x < 0 - triangleMiddle ||
+		triangleObj.x >= window.innerWidth
 	) {
 		triangleObj.direction = (triangleObj.direction + 2) % 4; // Reverse direction if out of bounds
 		triangleObj.x = Math.max(
@@ -94,8 +99,8 @@ function move(triangleObj) {
 		);
 	}
 	if (
-		triangleObj.y < 0 ||
-		triangleObj.y >= window.innerHeight - (gridSize - triangleMiddle)
+		triangleObj.y < 0 - triangleMiddle ||
+		triangleObj.y >= window.innerHeight
 	) {
 		triangleObj.direction = (triangleObj.direction + 2) % 4; // Reverse direction if out of bounds
 		triangleObj.y = Math.max(
