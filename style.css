@@ -113,7 +113,15 @@ body {
 
 @media screen and (max-width: 600px) {
 	.card {
-		width: 80%;
+		width: 68%;
+		height: 60%;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.card {
+		width: 75%;
 		height: 60%;
 		text-align: center;
 	}
