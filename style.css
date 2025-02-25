@@ -110,3 +110,11 @@ body {
 	margin-right: 30%;
 	height: auto;
 }
+
+@media screen and (max-width: 600px) {
+	.card {
+		width: 80%;
+		height: 60%;
+		text-align: center;
+	}
+}
